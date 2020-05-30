@@ -16,14 +16,18 @@ SOLUTION,
 """
 import math
 
-from constants import EARTH_MU
-from helpers import get_input
-from orbital_mechanics import OrbitalMechanics
+from Constants import Constants
+from OrbitalMechanics import OrbitalMechanics
+from Util import Util
 
-r = get_input('burnout radius (m)', 6628140)
-v = get_input('burnout velocity (m/s)', 7900)
-z = get_input('burnout zenith (deg)', 89)
-mu = get_input('mu (m^3 / s^2', EARTH_MU)
-om = OrbitalMechanics(mu)
-true_anomaly = om.eq28(r, v, z)
-print(f'true_anomaly = %g' % math.degrees(true_anomaly))
+
+class Problem410:
+    @staticmethod
+    def do_problem():
+        r = Util.get_input('burnout radius (m)', 6628140)
+        v = Util.get_input('burnout velocity (m/s)', 7900)
+        z = Util.get_input('burnout zenith (deg)', 89)
+        mu = Util.get_input('mu (m^3 / s^2', Constants.EARTH_MU)
+        om = OrbitalMechanics(mu)
+        true_anomaly = om.eq28(r, v, z)
+        print(f'true_anomaly = %g' % math.degrees(true_anomaly))

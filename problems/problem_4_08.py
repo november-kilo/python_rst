@@ -38,21 +38,25 @@ SOLUTION,
 
       Altitude @ agogee = 7,175,100 / 1,000 - 6,378.14 = 797.0 km
 """
-from constants import EARTH_RADIUS, EARTH_MU
-from helpers import get_input
-from orbital_mechanics import OrbitalMechanics
+from Constants import Constants
+from OrbitalMechanics import OrbitalMechanics
+from Util import Util
 
-r = get_input('central body radius (km)', EARTH_RADIUS)
-r1 = get_input('burnout altitude (km)', 250)
-r1 = (r + r1) * 1000
-v1 = get_input('burnout velocity (m/s)', 7900)
-gamma1 = get_input('burnout zenith (deg)', 89)
-mu = get_input('mu (m^3/s^2)', EARTH_MU)
-om = OrbitalMechanics(mu)
 
-rp, ra, c = om.eq26(r1, v1, gamma1)
-altitude_at_periapsis = (rp / 1000) - r
-altitude_at_apoapsis = (ra / 1000) - r
-
-print(f'Altitude at periapsis: %g km' % altitude_at_periapsis)
-print(f'Altitude at apoapsis: %g km' % altitude_at_apoapsis)
+class Problem408:
+    @staticmethod
+    def do_problem():
+        r = Util.get_input('central body radius (km)', Constants.EARTH_RADIUS)
+        r1 = Util.get_input('burnout altitude (km)', 250)
+        r1 = (r + r1) * 1000
+        v1 = Util.get_input('burnout velocity (m/s)', 7900)
+        gamma1 = Util.get_input('burnout zenith (deg)', 89)
+        mu = Util.get_input('mu (m^3/s^2)', Constants.EARTH_MU)
+        om = OrbitalMechanics(mu)
+        
+        rp, ra, c = om.eq26(r1, v1, gamma1)
+        altitude_at_periapsis = (rp / 1000) - r
+        altitude_at_apoapsis = (ra / 1000) - r
+        
+        print(f'Altitude at periapsis: %g km' % altitude_at_periapsis)
+        print(f'Altitude at apoapsis: %g km' % altitude_at_apoapsis)

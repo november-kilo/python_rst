@@ -24,19 +24,23 @@ SOLUTION,
 
       Altitude @ apogee = 6,767 - 6,378.14 = 388.9 km
 """
-from constants import EARTH_MU, EARTH_RADIUS
-from helpers import get_input
-from orbital_mechanics import OrbitalMechanics
+from Constants import Constants
+from OrbitalMechanics import OrbitalMechanics
+from Util import Util
 
-mu = get_input('mu (m^3/s^2)', EARTH_MU)
-a = get_input('semimajor axis (km)', 6700)
-eccentricity = get_input('eccentricity (dimensionless)', 0.01)
-r = get_input('central body radius (km)', EARTH_RADIUS)
 
-rp = OrbitalMechanics.eq21(a, eccentricity)
-ap = rp - r
-ra = OrbitalMechanics.eq22(a, eccentricity)
-aa = ra - r
+class Problem407:
+    @staticmethod
+    def do_problem():
+        mu = Util.get_input('mu (m^3/s^2)', Constants.EARTH_MU)
+        a = Util.get_input('semimajor axis (km)', 6700)
+        eccentricity = Util.get_input('eccentricity (dimensionless)', 0.01)
+        r = Util.get_input('central body radius (km)', Constants.EARTH_RADIUS)
+        
+        rp = OrbitalMechanics.eq21(a, eccentricity)
+        ap = rp - r
+        ra = OrbitalMechanics.eq22(a, eccentricity)
+        aa = ra - r
 
-print('Rp = ' + str(rp) + ' km; altitude at periapsis = ' + str(ap) + ' km')
-print('Ra = ' + str(ra) + ' km; altitude at apoapsis = ' + str(aa) + ' km')
+        print('Rp = ' + str(rp) + ' km; altitude at periapsis = ' + str(ap) + ' km')
+        print('Ra = ' + str(ra) + ' km; altitude at apoapsis = ' + str(aa) + ' km')

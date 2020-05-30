@@ -19,17 +19,21 @@ SOLUTION,
 
       Altitude @ apogee = 6,805,140 / 1,000 - 6,378.14 = 427.0 km
 """
-from constants import EARTH_MU, EARTH_RADIUS
-from helpers import get_input
-from orbital_mechanics import OrbitalMechanics
+from Constants import Constants
+from OrbitalMechanics import OrbitalMechanics
+from Util import Util
 
-mu = get_input('mu (m^3/s^2)', EARTH_MU)
-r = get_input('central body radius (km)', EARTH_RADIUS)
-rp = get_input('periapsis radius (km)', 200)
-vp = get_input('periapsis velocity (m / s)', 7850)
-om = OrbitalMechanics(mu)
 
-rp = (r + rp) * 1000
-ra = om.eq18(rp, vp) / 1000 - r
-
-print('Apoapsis radius = %g' % ra)
+class Problem405:
+    @staticmethod
+    def do_problem():
+        mu = Util.get_input('mu (m^3/s^2)', Constants.EARTH_MU)
+        r = Util.get_input('central body radius (km)', Constants.EARTH_RADIUS)
+        rp = Util.get_input('periapsis radius (km)', 200)
+        vp = Util.get_input('periapsis velocity (m / s)', 7850)
+        om = OrbitalMechanics(mu)
+        
+        rp = (rp + r) * 1000
+        ra = om.eq18(rp, vp) / 1000 - r
+        
+        print('Apoapsis radius = %g' % ra)

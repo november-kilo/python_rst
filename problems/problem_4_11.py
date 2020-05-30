@@ -15,13 +15,17 @@ SOLUTION,
       a = 1 / ( 2 / 6,628,140 - 7,9002 / 3.986005×1014) )
       a = 6,888,430 m
 """
-from constants import EARTH_MU
-from helpers import get_input
-from orbital_mechanics import OrbitalMechanics
+from Constants import Constants
+from OrbitalMechanics import OrbitalMechanics
+from Util import Util
 
-mu = get_input('mu (m^3 / s^2)', EARTH_MU)
-r = get_input('burnout radius (m)', 6628140)
-v = get_input('burnout velocity (m/s)', 7900)
-om = OrbitalMechanics(mu)
-a = om.eq32(r, v)
-print(f'semimajor axis (m) = %g' % a)
+
+class Problem411:
+    @staticmethod
+    def do_problem():
+        mu = Util.get_input('mu (m^3 / s^2)', Constants.EARTH_MU)
+        r = Util.get_input('burnout radius (m)', 6628140)
+        v = Util.get_input('burnout velocity (m/s)', 7900)
+        om = OrbitalMechanics(mu)
+        a = om.eq32(r, v)
+        print(f'semimajor axis (m) = %g' % a)

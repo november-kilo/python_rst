@@ -10,15 +10,19 @@ SOLUTION,
       e = 6,578,140 * 7,8502 / 3.986005*1014 - 1
       e = 0.01696
 """
-from constants import EARTH_MU
-from helpers import get_input
-from orbital_mechanics import OrbitalMechanics
+from Constants import Constants
+from OrbitalMechanics import OrbitalMechanics
+from Util import Util
 
-mu = get_input('mu (m^3 / s^2)', EARTH_MU)
-rp = get_input('periapsis radius (m)', 6578140)
-vp = get_input('periapsis velocity (m/s)', 7850)
-om = OrbitalMechanics(mu)
 
-e = om.eq20(rp, vp)
-
-print(f'e = %g' % e)
+class Problem406:
+    @staticmethod
+    def do_problem():
+        mu = Util.get_input('mu (km^3 / s^2)', Constants.EARTH_MU)
+        rp = Util.get_input('periapsis radius (m)', 6578.14)
+        vp = Util.get_input('periapsis velocity (km/s)', 7.85)
+        om = OrbitalMechanics(mu)
+        
+        e = om.eq20(rp, vp)
+        
+        print(f'e = %g' % e)

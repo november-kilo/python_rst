@@ -21,20 +21,24 @@ SOLUTION,
       Va = SQRT[ 2 * 3.986005*1014 * 6,628,140 / (6,878,140 * (6,878,140 + 6,628,140)) ]
       Va = 7,542 m/s
 """
-from constants import EARTH_MU, EARTH_RADIUS
-from helpers import get_input
-from orbital_mechanics import OrbitalMechanics
+from Constants import Constants
+from OrbitalMechanics import OrbitalMechanics
+from Util import Util
 
-mu = get_input('mu (m^3/s^2)', EARTH_MU)
-r = get_input('central body radius (m)', EARTH_RADIUS)
-rp = get_input('periapsis (m)', 250)
-ra = get_input('apoapsis (m)', 500)
 
-om = OrbitalMechanics(mu)
-rp = 1000 * (rp + r)
-ra = 1000 * (ra + r)
+class Problem404:
+    @staticmethod
+    def do_problem():
+        mu = Util.get_input('mu (m^3/s^2)', Constants.EARTH_MU)
+        r = Util.get_input('central body radius (m)', Constants.EARTH_RADIUS)
+        rp = Util.get_input('periapsis (km)', 250)
+        ra = Util.get_input('apoapsis (km)', 500)
 
-vp = om.eq16(rp, ra)
-va = om.eq17(rp, ra)
+        om = OrbitalMechanics(mu)
+        rp = (rp + r) * 1000
+        ra = (ra + r) * 1000
 
-print('Vp = ' + str(vp) + ' m/s\nVa = ' + str(va) + ' m/s')
+        vp = om.eq16(rp, ra)
+        va = om.eq17(rp, ra)
+
+        print('Vp = ' + str(vp) + ' m/s\nVa = ' + str(va) + ' m/s')
